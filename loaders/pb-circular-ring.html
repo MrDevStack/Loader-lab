@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circular Gauge - Loader Lab</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #090d16;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+    }
+    .demo-label {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #94a3b8;
+    }
+
+.pb-circular-ring {
+  --size: 54px;
+  --color: #06b6d4;
+  --track: rgba(255, 255, 255, 0.08);
+  --thickness: 4px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pb-circle-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: var(--thickness) solid var(--track);
+}
+
+.pb-circle-runner {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: var(--thickness) solid transparent;
+  border-top-color: var(--color);
+  border-right-color: var(--color);
+  animation: pbCircleSpin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes pbCircleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pb-circle-runner {
+    animation: none;
+    transform: rotate(45deg);
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="pb-circular-ring" role="progressbar" aria-label="Circular progress">
+  <div class="pb-circle-track"></div>
+  <div class="pb-circle-runner"></div>
+</div>
+  <p class="demo-label">Circular Gauge</p>
+</body>
+</html>
